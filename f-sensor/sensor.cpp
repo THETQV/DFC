@@ -16,7 +16,7 @@ void setup() {
    Wire.begin();
    Wire.setClock(400000); 
    mpu.initialize();
-   int i = micros();
+   int i = 0;
 
    while(i < 20000000) {
     //for acceleration
