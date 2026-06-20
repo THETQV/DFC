@@ -1,2 +1,22 @@
 this will contain comments for radio transmitter receiving.
-i cant do it now, i dont have transmitter power cord.
+
+
+
+max ranges for 40 degrees for y,p,r
+
+pins -
+ch1 - roll - 25
+ch2 - pitch - 26
+ch3 - throttle - 27
+ch4 - yaw - 33
+
+
+
+
+exit variables-
+roll_c 
+pitch_c 
+yaw_c 
+throttle_c
+
+
