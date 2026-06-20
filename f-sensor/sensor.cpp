@@ -9,14 +9,13 @@ float gxo_off = 0, gyo_off = 0, gzo_off = 0;
     float axo_off = 0, ayo_off = 0, azo_off = 0;
 void setup() {
     Serial.begin(115200);
-    delay(10);
+    delay(1);
 
       
       
 
     
    Wire.begin(); 
-   delay(5);
    mpu.initialize();
    int samples = 2000;
    int i = 0;
@@ -41,7 +40,7 @@ void setup() {
     //get offsets
     
     i++;
-    delay(5);
+    delay(1);
 
     
 }
