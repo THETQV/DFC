@@ -65,7 +65,7 @@ void loop() {
   float yaw_c = ((ch4_val - 1500.0) / 500.0) * my;
   float throttle = ch3_val;
 
-  Serial.println(roll_c);
-  Serial.println(pitch_c);
+  Serial.print(roll_c);
+  Serial.print(pitch_c);
   Serial.println(yaw_c);
   }
