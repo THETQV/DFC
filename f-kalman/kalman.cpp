@@ -8,8 +8,9 @@ float axo_off = 0, ayo_off = 0, azo_off = 0;
 int samples = 2000;
 const float ACCEL_SCALE = 16384.0f;
 
-//for the pid//
-float roll, pitch, yawr;
+//for the pid///////////
+float roll, pitch, yawr, rollr, pitchr,dt,uint32_t now;
+//////////////////////////
 
 // ---------- Kalman filter (one instance per axis) ----------
 struct Kalman {
@@ -103,8 +104,8 @@ void loop() {
     float eRoll  = atan2(-axg, sqrt(ayg*ayg + azg*azg)) * 180.0f / PI;
 
 
-      uint32_t now = micros();
-  float dt = (now - lastMicros) / 1000000.0f;
+      now = micros();
+      dt = (now - lastMicros) / 1000000.0f;
   lastMicros = now;
   if (dt <= 0 || dt > 0.5f) dt = 0.01f;
   if ((eRoll < -90 && kalRoll.angle > 90) ||
@@ -114,7 +115,9 @@ void loop() {
         roll = kalmanUpdate(kalRoll, eRoll, gyroPitchRate, dt);
   if (abs(roll) > 90) gy_e = -gy_e;
         pitch = kalmanUpdate(kalPitch, ePitch, gyroRollRate, dt);
-        yawrate = gyroYawRate;
+        yawr = gyroYawRate;
+        rollr = gyroRollRate;
+        pitchr = gyroPitchRate;
 
 if (now - lastPrint > 50000) {
     lastPrint = now;

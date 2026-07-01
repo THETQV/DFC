@@ -1,0 +1,17 @@
+comments for pid file.
+
+take inputs from radio file and kalman files.
+
+give outputs to integration file and esc file.
+
+take in pitch , roll, yawr, rollr, pitchr,dt from kalman file. [float]
+r = rate
+
+
+take in pitch_d, roll_d, yawr_d from radio file. 
+d  = desired.
+ 
+out to esc in roll_out, pitch_out, yaw_out. [int]
+out = output.
+
+

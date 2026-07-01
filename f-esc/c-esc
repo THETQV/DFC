@@ -1,0 +1,14 @@
+comment for esc file.
+
+input taken from pid file.
+
+output to directly integration.
+
+
+
+define channels from schematic
+m1, m2, m3, m4 = fl, fr , br, bl.
+
+take inputs of roll_out, yaw_out, pitch_out from pid file. [int]
+
+give m1_out, m2_out, m3_out, m4_out to integration. 
