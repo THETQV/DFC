@@ -3,72 +3,84 @@
 float roll, pitch, yawr, pitchr, rollr;
 int rolld, pitchd, yawd;
 
-float Kp = 5, Ki = 0.5, Kd = 2;
-float kp = 0.0, kd = 0.0, ki = 0.0 ;
+float Kp = 5;
+//1 is for roll/pitch
+//2 is for yaw
+float kp1 = 0.0, kd1 = 0.0, ki1 = 0.0 ;
+float kp2 = 0.0, kd2 = 0.0, ki2 = 0.0 ;
+
 uint32_t lastMicros = 0;
 float dt;
 int roll_out, pitch_out, yawr_out;
+float  r_d = 0; float err2 = 0;
 
-void setup(){lastMicros = micros();}
-//for x = 1, Kp,Ki,Kd
-// for x = 0, kp,ki,kd
-int pid(float err, float lerr, int x){
-    float ir, dr;int total;
-      ir += err * dt;
-      dr = (err - lerr) / dt;
-      if(x==1){
-        total = (Kp * err) + (Ki * ir) + (Kd * dr);
-      }
-      if(x==0){
-        total = (kp * err) + (ki * ir) + (kd * dr);
-      }
-      else{total = 0;}
-      return total;
+void setup(){lastMicros = micros(); }
 
 
 
-
+//determine desired rate
+int R_d(int angled, float anglea){
+  float err1 = angled- anglea;
+  r_d = err1*Kp;
 }
 
 
 
 
 
+//ek function aisa bhi
+int pid(float r_d, float angler, float lerror, int mode){
+   err2 = r_d - angler;
+  float i += err2*dt;
+    float d = (err2-lerror)/dt;
+  if(mode==1){
+    int total = kp1*err2+ ki1*i + kd1*d;
+  }
+  if(mode==2){
+    int total = kp2*err2 + ki2*i + kd2*d;
+  }
+  return total;
+
+}
+
+
+
+void loop(){
+
 float Rlerror = 0;
 float Plerror = 0;
 float Ylerror = 0;
 
 
-
-
-void loop(){
       now = micros();
       dt = (now - lastMicros) / 1000000.0f;
       lastMicros = now;
       if (dt <= 0 || dt > 0.5f) dt = 0.01f;
 
+//ROLL
+      //first rate calc
+      R_d(rolld,roll);
+      //then actual inner pid
+      roll_out = pid(r_d,rollr,Rlerror,1);
+      //update last error
+      Rlerror = err2;
+
+
+//PITCH
+       //first rate calc
+      R_d(pitchd,pitch);
+      //then actual inner pid
+      pitch_out = pid(r_d,pitchr,Plerror,1);
+      //update last error
+      Plerror = err2;
+
+
+//YAW
       
-      
-      float Rerror =  rolld - roll;
-      int roll_out = pid(Rerror,Rlerror,1);
-      float Rlerror = Rerror;
+      //then actual inner pid
+      yawr_out = pid(yawd,yawr,Ylerror,2);
+      //update last error
+      Ylerror = err2;
 
 
-
-      float Perror = pitchd - pitch;
-      int pitch_out = pid(Perror,Plerror,1);
-      float Plerror = Perror;
-
-
-
-      float Yerror = yawrd - yawr;
-      int yaw_out = pid(Yerror,Ylerror,0);
-      float Ylerror = Yerror;
-
-      
-
-
-
-
-    
 }
