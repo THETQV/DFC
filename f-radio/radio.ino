@@ -60,12 +60,12 @@ void setup() {
 }
 
 void loop() {
-  float roll_c = ((ch1_val - 1500.0) / 500.0) * mr;
-  float pitch_c = ((ch2_val - 1500.0) / 500.0) * mp;
-  float yaw_c = ((ch4_val - 1500.0) / 500.0) * my;
+  float rolld = ((ch1_val - 1500.0) / 500.0) * mr;
+  float pitchd = ((ch2_val - 1500.0) / 500.0) * mp;
+  float yawd = ((ch4_val - 1500.0) / 500.0) * my;
   float throttle = ch3_val;
 
-  Serial.print(roll_c);
-  Serial.print(pitch_c);
-  Serial.println(yaw_c);
+  Serial.print(rolld);
+  Serial.print(pitchd);
+  Serial.println(yawd);
   }
