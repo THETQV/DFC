@@ -2,3 +2,10 @@ Here you will find the Drone-Acharya CAD files in SLDPRT and SLDASM formats.
 
 This was by far the most overestimated part of the project and required the least amount of effort compared to the design of the flightcontroller
 :)
+
+
+This frame was originally inspired by the market famous F-450, mainly its mounting technique between the top and bottom plates with the arms of the drone. 
+This frame is also meant to be 3D-printed with ABS or PLA with 30% infill (Gyroid Infill is reccommended) along with 4 wall lines, for extra regidity.
+
+When assembled and 3D-printed, this frame stand-alone wieghed in to approximately 310 grams.(slightly heavier than the F-450). By no means is this frame better than the F-450 for this
+class of drones, but can hold its own when paired with more powerful motors and better avionics. (Was originally designed around the speedybee 405 FC Stack, with room for extra sensors)
