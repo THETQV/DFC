@@ -79,6 +79,8 @@ void setup() {
     gzo_off = (float)sumGZO / samples;
   lastMicros = micros();
   }
+
+
 void loop() {
       int16_t ax, ay, az, gx, gy, gz;
 
@@ -108,9 +110,9 @@ void loop() {
       (eRoll >  90 && kalRoll.angle < -90)) {
     kalRoll.angle = eRoll;
   }
-        roll = kalmanUpdate(kalRoll, eRoll, gyroPitchRate, dt);
+        roll = kalmanUpdate(kalRoll, eRoll, gyroRollRate, dt);
   if (abs(roll) > 90) gy_e = -gy_e;
-        pitch = kalmanUpdate(kalPitch, ePitch, gyroRollRate, dt);
+        pitch = kalmanUpdate(kalPitch, ePitch, gyroPitchRate, dt);
         yawr = gyroYawRate;
         rollr = gyroRollRate;
         pitchr = gyroPitchRate;
