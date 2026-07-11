@@ -8,7 +8,7 @@ float axo_off = 0, ayo_off = 0, azo_off = 0;
 int samples = 2000;
 const float ACCEL_SCALE = 16384.0f;
 
-//for the pid///////////
+//for the pid//////////////
 float roll, pitch, yawr, rollr, pitchr,dt;
 uint32_t now;
 //////////////////////////
@@ -111,7 +111,7 @@ void loop() {
     kalRoll.angle = eRoll;
   }
         roll = kalmanUpdate(kalRoll, eRoll, gyroRollRate, dt);
-  if (abs(roll) > 90) gy_e = -gy_e;
+  if (abs(roll) > 90) gyroRollRate = -gyroRollRate;
         pitch = kalmanUpdate(kalPitch, ePitch, gyroPitchRate, dt);
         yawr = gyroYawRate;
         rollr = gyroRollRate;
