@@ -90,14 +90,9 @@ void loop() {
     mpu.getRotation(&gx, &gy, &gz);
 
     // Apply offset corrections
-    float gx_e = gx - gxo_off;
-    float gy_e = gy - gyo_off;
-    float gz_e = gz - gzo_off;
-
-    // Scale raw values to degrees per second based on standard FS_SEL multiplier
-    float gyroPitchRate = gx_e / 131.0f;
-    float gyroRollRate  = gy_e / 131.0f;
-    float gyroYawRate   = gz_e / 131.0f;
+    float gyroPitchRate = gx/131.0f - gxo_off/131.0f;
+    float gyroRollRate = gy/131.0f - gyo_off/131.0f;
+    float gyroYawRate = gz/131.0f - gzo_off/131.0f;
 
     // Pitch and Roll calculation
     float ePitch = atan2(ayg, azg) * 180.0f / PI;
