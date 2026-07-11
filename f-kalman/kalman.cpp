@@ -109,9 +109,9 @@ void loop() {
   if ((eRoll < -90 && kalRoll.angle > 90) ||
       (eRoll >  90 && kalRoll.angle < -90)) {
     kalRoll.angle = eRoll;
-  }
+  }if (abs(roll) > 90) gyroRollRate = -gyroRollRate;
         roll = kalmanUpdate(kalRoll, eRoll, gyroRollRate, dt);
-  if (abs(roll) > 90) gyroRollRate = -gyroRollRate;
+  
         pitch = kalmanUpdate(kalPitch, ePitch, gyroPitchRate, dt);
         yawr = gyroYawRate;
         rollr = gyroRollRate;
