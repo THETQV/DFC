@@ -9,7 +9,8 @@ int samples = 2000;
 const float ACCEL_SCALE = 16384.0f;
 
 //for the pid///////////
-float roll, pitch, yawr, rollr, pitchr,dt,uint32_t now;
+float roll, pitch, yawr, rollr, pitchr,dt;
+uint32_t now;
 //////////////////////////
 
 // ---------- Kalman filter (one instance per axis) ----------
